@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webpack Demo</title>
+    <script type="text/javascript" src="static/js/es5-shim.min.js"></script>
+</head>
+<body>
+    <div id="app">
+            <%= require('./components/header/header.ejs')() %>
+            <div id="info"></div>
+            <div class="bg-pic"></div>
+            <!-- <img src="${require('../images/1.png')}" alt=""> -->
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
