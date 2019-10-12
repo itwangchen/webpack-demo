@@ -28,9 +28,10 @@ module.exports = {
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new CopyWebpackPlugin([
-      { from: './src/static', to: 'static' }
-    ])
+    new CopyWebpackPlugin([{
+      from: './src/static',
+      to: 'static'
+    }])
   ],
   optimization: {
     splitChunks: {
@@ -47,7 +48,7 @@ module.exports = {
           enforce: true
         }
       }
-     
+
     },
     minimizer: [
       new UglifyJsPlugin({
@@ -58,8 +59,7 @@ module.exports = {
     ]
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
@@ -75,8 +75,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          {
+        use: [{
             loader: MiniCssExtractPlugin.loader,
             options: {
               // css中的图片路径增加前缀
@@ -88,8 +87,7 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        use: [
-          {
+        use: [{
             loader: MiniCssExtractPlugin.loader,
             options: {
               // css中的图片路径增加前缀
@@ -101,22 +99,24 @@ module.exports = {
         ]
       },
       {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
+      },
+      {
         test: /\.ejs/,
         use: ['ejs-loader'],
       },
       {
         test: /\.(png|svg|jpg|gif|webp)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              // 图片输出的实际路径(相对于dist)
-              outputPath: 'images',
-              // 当小于某KB时转为base64
-              limit: 0
-            }
+        use: [{
+          loader: 'url-loader',
+          options: {
+            // 图片输出的实际路径(相对于dist)
+            outputPath: 'images',
+            // 当小于某KB时转为base64
+            limit: 0
           }
-        ]
+        }]
       },
       {
         test: /\.(html)$/,
